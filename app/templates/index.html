@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  {% block title %}Регистрация участников{% endblock %}
+{% endblock %}
+
+{% block content %}
+{{ super() }} 
+
+<h1 class='text-blue-500 font-sans p-4 text-xl'>Список событий</h1>
+
+<div class='flex flex-row flex-no-wrap relative'>
+
+  <div class='flex-col flex-wrap'>
+    <ul class="text-base text-gray-700 pt-4 md:pt-0">
+      {% for rec in year_list %}
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">{{ rec.year_num }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class='flex-col flex-wrap'>
+    <ul class="text-base text-gray-700 pt-4 md:pt-0">
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Январь</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Февраль</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Март</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Апрель</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Май</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Июнь</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Июль</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Август</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Сентябрь</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Октябрь</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Ноябрь</a></li>
+      <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Декабрь</a></li>
+    </ul>
+  </div>
+
+  <div class="relative m-2">
+    <div class="border-r-2 border-gray-500 absolute h-full top-0 ml-4"></div>
+    <ul class="list-none m-0 p-0">
+
+      {% for event in event_list %}
+      <li class="mb-2">
+        <div class="flex items-center mb-1">
+          <div class="bg-gray-500 rounded-full h-8 w-8"></div>
+          <div class="flex-1 ml-4 font-medium">{{ event.date_start.strftime('%d.%m.%Y') }} / {{ event.time_start.strftime('%H:%M') }}</div>
+        </div>
+        <div class="ml-12 italic">
+          {{ event.place }}
+        </div>
+        <div class="ml-12 font-medium">
+          {{ event.name }}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+
+{% endblock %}

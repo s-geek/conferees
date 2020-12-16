@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  {% block title %}Добавление события{% endblock %}
+{% endblock %}
+
+{% block content %}
+{{ super() }} 
+
+<h1 class='text-blue-500 font-sans p-4 text-xl'>Добавление события</h1>
+
+<form action="" method="post">
+
+    {{ form.csrf_token() }}
+
+    {% for field in form if field.name != "csrf_token" %}
+	<p>{{ field.label() }}</p>
+	<p>{{ field(class="xxx") }}
+	    {% for error in field.errors %}
+		{{ error }}
+	    {% endfor %}
+	</p>
+    {% endfor %}
+    <input type="submit" value="Сохранить">
+
+</form>
+
+{% endblock %}
