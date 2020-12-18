@@ -1,6 +1,5 @@
 from app import app
 from flask import render_template, request, redirect, url_for, flash, make_response, session
-from datetime import datetime, time
 from .models import Event, db
 from .forms import EventForm, LoginForm
 from sqlalchemy.sql.expression import func
@@ -17,10 +16,8 @@ def index():
 @app.route('/event/add', methods=['GET', 'POST'])
 def event_add():
     form = EventForm()
-    form.date_start.data = datetime.now()
-    form.time_start.data = datetime.now().time()
-    form.date_end.data = datetime.now()
-    if form.validate_on_submit():
+
+    if request.method == 'POST' and form.validate_on_submit():
         name = form.name.data
         place = form.place.data
         date_start = form.date_start.data

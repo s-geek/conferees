@@ -33,9 +33,9 @@
                     <!--Menu-->
                     <nav>
                         <ul class="flex items-center justify-between text-base text-gray-700 pt-0">
-                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/">Главная</a></li>
-                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/reports">Отчеты</a></li>
-                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/event/add">Добавить событие</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="{{url_for('index')}}">Главная</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="{{url_for('index')}}">Отчеты</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="{{url_for('event_add')}}">Добавить событие</a></li>
                         </ul>
                     </nav>
                 </div>
