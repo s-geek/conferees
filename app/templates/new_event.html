@@ -12,39 +12,94 @@
 <div class="w-full max-w-4xl">
 	<form class="bg-white rounded px-8 pt-6 pb-8 mb-4" method="POST">
 		
-		{{ form.hidden_tag() }}
+		{{ form.csrf_token }}
  
 		<div class="mb-4">
 			<p>{{ form.name.label(class="block text-gray-600 text-sm font-semibold mb-2") }}</p> 
-			<p>{{ form.name(class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% if form.name.errors %}
+				<p>{{ form.name(class="bg-gray-100 appearance-none border border-2 border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+				<span class="text-red-400 italic font-semibold">
+					{% for error in form.name.errors %}
+					{{ error }}
+					{% endfor %}					
+				</span>
+			{% else %} 
+				<p>{{ form.name(class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% endif %} 
+			
 		</div>
 
 		<div class="mb-4">
 			<p>{{ form.place.label(class="block text-gray-600 text-sm font-semibold mb-2") }}</p> 
-			<p>{{ form.place(class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% if form.place.errors %}
+			<p>{{ form.place(class="bg-gray-100 appearance-none border border-2 border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			<span class="text-red-400 italic font-semibold">
+				{% for error in form.place.errors %}
+				{{ error }}
+				{% endfor %}					
+			</span>
+			{% else %} 
+				<p>{{ form.place(class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% endif %} 
 		</div>
 
 
 		<div class="grid grid-cols-2 max-w-lg">
 			<div class="mb-4">
 				<p>{{ form.date_start.label(class="block text-gray-600 text-sm font-semibold mb-2") }}</p> 
-				<p>{{ form.date_start(class="bg-gray-100 appearance-none border rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+				{% if form.date_start.errors %}
+				<p>{{ form.date_start(class="bg-gray-100 appearance-none border border-2 border-red-500 rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+				<span class="text-red-400 italic font-semibold">
+					{% for error in form.date_start.errors %}
+					{{ error }}
+					{% endfor %}					
+				</span>
+				{% else %} 
+					<p>{{ form.date_start(class="bg-gray-100 appearance-none border rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+				{% endif %}
 			</div>
 	
 			<div class="mb-4">
 				<p>{{ form.time_start.label(class="block text-gray-600 text-sm font-semibold mb-2") }}</p> 
-				<p>{{ form.time_start(class="bg-gray-100 appearance-none border rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+				{% if form.time_start.errors %}
+				<p>{{ form.time_start(class="bg-gray-100 appearance-none border border-2 border-red-500 rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+				<span class="text-red-400 italic font-semibold">
+					{% for error in form.time_start.errors %}
+					{{ error }}
+					{% endfor %}					
+				</span>
+				{% else %} 
+					<p>{{ form.time_start(class="bg-gray-100 appearance-none border rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+				{% endif %}
 			</div>
 		</div>
 
 		<div class="mb-4">
 			<p>{{ form.date_end.label(class="block text-gray-600 text-sm font-semibold mb-2") }}</p> 
-			<p>{{ form.date_end(class="bg-gray-100 appearance-none border rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% if form.date_end.errors %}
+			<p>{{ form.date_end(class="bg-gray-100 appearance-none border border-2 border-red-500 rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			<span class="text-red-400 italic font-semibold">
+				{% for error in form.date_end.errors %}
+				{{ error }}
+				{% endfor %}					
+			</span>
+			{% else %} 
+				<p>{{ form.date_end(class="bg-gray-100 appearance-none border rounded max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% endif %}
 		</div>
 
 		<div class="mb-4">
 			<p>{{ form.notes.label(class="block text-gray-600 text-sm font-semibold mb-2") }}</p> 
-			<p>{{ form.notes(class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% if form.notes.errors %}
+			<p>{{ form.notes(class="bg-gray-100 appearance-none border border-2 border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			<span class="text-red-400 italic font-semibold">
+				{% for error in form.notes.errors %}
+				{{ error }}
+				{% endfor %}					
+			</span>
+			{% else %} 
+				<p>{{ form.notes(class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}</p>
+			{% endif %} 
 		</div>		
 		
 		<div class="flex items-center justify-between">

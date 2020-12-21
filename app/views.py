@@ -6,7 +6,7 @@ from sqlalchemy.sql.expression import func
 
 @app.route('/')
 def index():
-    event_list = db.session.query(Event).order_by(-Event.date_start).all()
+    event_list = db.session.query(Event).order_by(-Event.date_start, -Event.time_start).all()
     cur = db.session.execute('SELECT DISTINCT year(date_start) as year_num FROM events order by year_num desc limit 12')
     year_list = cur.fetchall()
    # e = Event.query.filter(func.year(Event.date_start)=='2020').all()
