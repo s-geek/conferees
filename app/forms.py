@@ -30,15 +30,27 @@ class EventForm(FlaskForm):
         if len(field.data) < 3:
             raise ValidationError('Место проведения события должно быть заполнено и быть длинной не менее 3-х символов.')    
 
+    def validate_date_start(form, field):
+        if not(field.data):
+            raise ValidationError('Дата начала события должна быть заполнена.')
+    
     def validate_time_start(form, field):
         if not(field.data):
             raise ValidationError('Время проведения события должно быть заполнено.')
+    
+    def validate_date_end(form, field):
+        if not(field.data):
+            raise ValidationError('Дата окончания события должна быть заполнена.')
 
     def validate(self):
         if not super(EventForm, self).validate():
             return False
 
         if Event.query.filter_by(name=self.name.data, place=self.place.data, date_start=self.date_start.data).first():
-            self.name.errors.append('Данное событие уже существует для указанных даты и места проведения.')
+            self.name.errors.append('Данное событие уже существует для указанной даты и места проведения.')
+            return False
+
+        if self.date_start.data > self.date_end.data:
+            self.date_end.errors.append('Дата окончания события не может быть раньше даты начала события.')
             return False
         return True
