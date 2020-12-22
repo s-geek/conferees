@@ -5,6 +5,7 @@ from wtforms.validators import InputRequired, Length, ValidationError
 from wtforms.widgets import *
 from wtforms.widgets.html5 import *
 from datetime import datetime, time
+from .models import Event, db
 
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired()])
@@ -31,4 +32,13 @@ class EventForm(FlaskForm):
 
     def validate_time_start(form, field):
         if not(field.data):
-            raise ValidationError('Время проведения события должно быть заполнено.')      
+            raise ValidationError('Время проведения события должно быть заполнено.')
+
+    def validate(self):
+        if not super(EventForm, self).validate():
+            return False
+
+        if Event.query.filter_by(name=self.name.data, place=self.place.data, date_start=self.date_start.data).first():
+            self.name.errors.append('Данное событие уже существует для указанных даты и места проведения.')
+            return False
+        return True
